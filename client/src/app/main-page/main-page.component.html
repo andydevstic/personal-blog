@@ -1,11 +1,26 @@
 <div>
   <div id="mobileNav" class="flex-column full-width">
     <ul class="side-menu">
-      <a class="default-text" [routerLink]="['/posts/create']"><li class="flex-column justify-center">Create Posts</li></a>
+      <ng-container *ngIf="user && user.username">
+          <a class="default-text" [routerLink]="['/posts/create']"><li class="flex-column justify-center">Create Posts</li></a>
+      </ng-container>
       <a class="default-text" [routerLink]="['/about']"><li class="flex-column justify-center">About</li></a>
       <a class="default-text" [routerLink]="['/contact']"><li class="flex-column justify-center">Contact</li></a>
-      <a class="default-text" [routerLink]="['/login']"><li class="flex-column justify-center">Login</li></a>
-      <a class="default-text" (click)="openRegisterDialog()"><li class="flex-column justify-center">Register</li></a>
+      <ng-container *ngIf="!user">
+        <a class="default-text" [routerLink]="['/login']"><li class="flex-column justify-center">Login</li></a>
+        <a class="default-text pointer" (click)="openRegisterDialog()"><li class="flex-column justify-center">Register</li></a>    
+      </ng-container>
+      <ng-container *ngIf="user && user.username">
+        <a class="default-text pointer">
+          <li class="flex-column justify-center" [matMenuTriggerFor]="sideMenu">
+            Hello, {{ user.username | stringLimit: 10 }}
+          </li>
+          <mat-menu #sideMenu="matMenu">
+            <button mat-menu-item>View profile</button>
+            <button mat-menu-item>Log out</button>
+          </mat-menu>
+        </a>
+      </ng-container>
     </ul>
   </div>
 

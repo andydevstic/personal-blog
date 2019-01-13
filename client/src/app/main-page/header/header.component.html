@@ -23,8 +23,8 @@
               Hello, {{ user.username | stringLimit: 10 }}
             </li>
             <mat-menu #menu="matMenu">
-              <button mat-menu-item>Item 1</button>
-              <button mat-menu-item>Item 2</button>
+              <button mat-menu-item>View profile</button>
+              <button mat-menu-item (click)="logout()">Log out</button>
             </mat-menu>
           </a>
         </ng-container>

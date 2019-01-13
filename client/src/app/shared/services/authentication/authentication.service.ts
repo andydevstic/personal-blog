@@ -49,8 +49,9 @@ export class AuthenticationService {
     return of(this.user);
   }
 
-  logout(): void {
+  logout(): Observable<boolean> {
     this.user = null;
     this.token = null;
+    return of(true);
   }
 }

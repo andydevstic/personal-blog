@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CheckMobileService } from 'src/app/shared/services/check-mobile/check-mobile.service';
 import { AuthenticationService } from 'src/app/shared/services/authentication/authentication.service';
 import { User } from 'src/app/models/user-model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -18,6 +19,7 @@ export class HeaderComponent implements OnInit {
   constructor(
     private MobileService: CheckMobileService,
     private authService: AuthenticationService,
+    private router: Router
   ) {
     this.isOpenBurger = false;
   }
@@ -36,6 +38,11 @@ export class HeaderComponent implements OnInit {
 
   openRegisterDialog() {
     this.openRegister.emit();
+  }
+
+  logout() {
+    this.user = null;
+    this.authService.logout().subscribe(() => this.router.navigate(['/']));
   }
 
 }

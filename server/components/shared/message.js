@@ -11,6 +11,10 @@ module.exports = {
     '02': 'Internal error!',
   },
   values: {
-    '01': (name) => `${name} must not be null!`
+    '01': (name) => `${name} must not be null!`,
+    '02': 'No data is found!'
+  },
+  system: {
+    '01': 'Internal error!'
   }
 }

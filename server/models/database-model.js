@@ -47,7 +47,25 @@ function query(sql, queryData) {
         reject(error);
       })
   })
-  
+}
+
+function select(tableName, criteria = 'TRUE', columns = '*') {
+  return new Promise((resolve, reject) => {
+    connectAndGetClient()
+      .then(client => {
+        client.query('SELECT $1 FROM $2 WHERE $3', [columns, tableName, criteria], (err, data) => {
+          if (err) {
+            reject(err)
+          } else {
+            client.release()
+            resolve(data)
+          }
+        })
+      })
+      .catch(error => {
+        reject(error)
+      })
+  })
 }
 
 function insert(tableName, value, columns = []) {
@@ -115,10 +133,8 @@ function update(tableName, newSet, condition) {
           return updateValue.join(', ')
         } else throw new Error('Invalid update value')
 
-        SQL = `
-          UPDATE ${tableName} SET ${updateValue} WHERE ${condition};
-        `
-        client.query(SQL, (err, data) => {
+        SQL = 'UPDATE $1 SET $2 WHERE $3;'
+        client.query(SQL, [tableName, updateValue, condition], (err, data) => {
           if (err) {
             reject(err);
           } else {
@@ -138,9 +154,9 @@ function deleteWithCondition(tableName, condition) {
     connectAndGetClient()
       .then(client => {
         let SQL = `
-          DELETE FROM ${tableName} WHERE ${condition}
+          DELETE FROM $1 WHERE $2
         `
-        client.query(SQL, (err, data) => {
+        client.query(SQL, [tableName, condition], (err, data) => {
           if (err) {
             reject(err);
           } else {
@@ -160,5 +176,6 @@ module.exports = {
   insert,
   insertMany,
   update,
-  deleteWithCondition
+  deleteWithCondition,
+  select,
 }

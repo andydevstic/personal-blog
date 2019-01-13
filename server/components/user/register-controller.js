@@ -14,7 +14,7 @@ router.post('/', function (req, res, next) {
 			})
 			.catch(error => {
         console.log(error)
-				res.status(500).json({success: false, message: messagePool.register["02"]})
+				res.status(500).json({success: false, message: messagePool.system['01']})
 			})
 	}
 });

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CheckMobileService } from '../shared/services/check-mobile/check-mobile.service';
 import { MatDialog } from '@angular/material';
 import { RegisterComponent } from '../register/register.component';
+import { User } from '../models/user-model';
+import { AuthenticationService } from '../shared/services/authentication/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-page',
@@ -16,10 +19,13 @@ export class MainPageComponent implements OnInit {
   private arrowIcon: HTMLElement;
 
   public displayMainNav: boolean;
+  public user: User|null;
 
   constructor(
     private isMobileService: CheckMobileService,
-    private matDialog: MatDialog
+    private matDialog: MatDialog,
+    private authenService: AuthenticationService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -29,6 +35,7 @@ export class MainPageComponent implements OnInit {
     this.mainContent = document.getElementById('main-content');
     this.arrowIcon = document.getElementById('arrow-icon');
     this.displayMainNav = !this.isMobileService.screenIsMobile();
+    this.authenService.getUser().subscribe(user => this.user = user);
   }
 
   toggleMobileNav($event: boolean) {
@@ -60,6 +67,11 @@ export class MainPageComponent implements OnInit {
   closeNav(nav: HTMLElement, screen: HTMLElement, width?: number) {
     nav.style.width = width > 0 ? `${width}px` : '0px';
     screen.style.marginLeft = width > 0 ? `${width}px` : '0px';
+  }
+
+  logout() {
+    this.user = null;
+    this.authenService.logout().subscribe(() => this.router.navigate(['/']));
   }
 
 }
