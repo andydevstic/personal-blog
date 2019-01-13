@@ -1,0 +1,20 @@
+.login-page {
+  background-image: url('/assets/images/login-background.jpg');
+}
+
+.form-container {
+  margin-top: 50px;
+  width: 300px;
+}
+
+.form-header {
+  background-color: #a4a7ad;
+  color: #dadee8;
+}
+
+.form-body {
+  padding: 15px;
+  background-color: #575a60;
+  border-bottom-left-radius: 10%;
+  border-bottom-right-radius: 10%;
+}

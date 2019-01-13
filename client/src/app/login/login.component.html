@@ -1,0 +1,46 @@
+<div class="flex-row screen-width screen-height justify-center login-page">
+
+  <div class="flex-column form-container">
+
+    <div class="flex-row justify-center form-header">
+      <h2>Blogger Login</h2>
+    </div>
+
+    <div class="flex-column form-body">
+
+      <form [formGroup]="loginForm" (submit)="onSubmit()">
+        <div class="username">
+          <mat-form-field style="width: 100%">
+            <input matInput formControlName="username" placeholder="Username / Email">
+          </mat-form-field>
+          <div *ngIf="username.touched && username.errors">
+            <span class="error-message">{{ username.errors.required && requiredFieldMessage }}</span>
+            <span class="error-message">{{ username.errors.email && emailFieldMessage }}</span>
+          </div>
+        </div>
+
+        <div class="password">
+          <mat-form-field style="width: 100%">
+            <input matInput formControlName="password" type="password" placeholder="Password">
+          </mat-form-field>
+          <div *ngIf="password.touched && password.errors">
+            <span class="error-message">{{ password.errors.required && requiredFieldMessage }}</span>
+          </div>
+        </div>
+
+        <div *ngIf="hasResult && !isSuccess">
+          <p class="error-message">{{authenFailMessage}}</p>
+        </div>
+
+        <div>
+          <button mat-raised-button color="primary" type="submit" class="full-width">
+            Login
+          </button>
+        </div>
+      </form>
+
+    </div>
+
+  </div>
+
+</div>

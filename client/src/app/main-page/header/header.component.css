@@ -1,0 +1,67 @@
+.header-container {
+  height: 60px;
+  padding: 0px 20px;
+  background-image: url('/assets/images/header-background.jpg');
+}
+
+.header-left {
+  flex-grow: 1;
+}
+
+.header-left h3 {
+  color: white;
+}
+
+.header-right {
+  flex-grow: 4;
+}
+
+.menu-desktop {
+  margin: auto 0px;
+  padding: 0px;
+}
+
+.menu-desktop >a {
+  width: 80px;
+  height: 60px;
+  text-decoration: none;
+  list-style-type: none;
+  color: white;
+}
+
+.menu-desktop >li {
+  list-style-type: none;
+}
+
+/* Burger Bar */
+
+.burger-wrapper {
+  width: 60px;
+}
+
+.burger-bar-container {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.bar1, .bar2, .bar3 {
+  width: 35px;
+  height: 5px;
+  background-color: white;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+.change .bar1 {
+  -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+  transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+.change .bar2 {
+  opacity: 0;
+}
+
+.change .bar3 {
+  -webkit-transform: rotate(45deg) translate(-8px, -8px);
+  transform: rotate(45deg) translate(-8px, -8px);
+}

@@ -1,0 +1,6 @@
+#footer {
+  height: 60px;
+  background-image: url('/assets/images/footer-background.jpg');
+  color: white;
+  font-weight: bold;
+}

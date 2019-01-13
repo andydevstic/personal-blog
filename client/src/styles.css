@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import './assets/css/size.css';
+@import './assets/css/flex.css';
+@import './assets/css/position.css';
+@import './assets/css/text.css';
+@import './assets/css/show-hide.css';
+body {
+  margin: 0px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.username label {
+  color: #d9d9d9 !important;
+}
+
+.username div.mat-form-field-underline {
+  background-color: #d9d9d9 !important;
+}
+
+.password div.mat-form-field-underline {
+  background-color: #d9d9d9 !important;
+}
+
+.password label {
+  color: #d9d9d9 !important;
+}

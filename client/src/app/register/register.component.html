@@ -1,0 +1,52 @@
+<div>
+  <div class="flex-row justify-center">
+    <h2>Register</h2>
+  </div>
+  <div class="flex-column" [formGroup]="userForm">
+    <div>
+      <mat-form-field class="full-width">
+        <input matInput formControlName="email" type="email" placeholder="Your email">
+        <div *ngIf="userEmail.touched && userEmail.errors">
+          <span class="error-message">{{ userEmail.errors.email && emailFieldMessage }}</span>
+          <span class="error-message">{{ userEmail.errors.required && requiredFieldMessage }}</span>
+          <span class="error-message">{{ userEmail.errors.maxlength && maxLengthFieldMessage }}</span>
+        </div>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="full-width">
+        <input matInput formControlName="password" type="password" placeholder="Your password">
+      </mat-form-field>
+      <div *ngIf="userPassword.touched && userPassword.errors">
+        <span class="error-message">{{ userPassword.errors.required && requiredFieldMessage }}</span>
+        <span class="error-message">{{ userPassword.errors.minlength && minLengthFieldMessage }}</span>
+      </div>
+    </div>
+
+    <div>
+      <mat-form-field class="full-width">
+        <input matInput formControlName="passwordConfirmation" type="password" placeholder="Retype your password">
+      </mat-form-field>
+      <div *ngIf="userConfirmPassword.touched && userConfirmPassword.errors">
+        <span class="error-message">{{ userConfirmPassword.errors.required && requiredFieldMessage }}</span>
+        <span class="error-message">{{ userConfirmPassword.errors.minlength && minLengthFieldMessage }}</span>
+      </div>
+    </div>
+
+    <div>
+      <mat-form-field class="full-width">
+        <input matInput formControlName="adminToken" type="text" placeholder="Admin token">
+        <!-- <span>* Used for registering as an admin</span> -->
+      </mat-form-field>
+    </div>
+
+    <div *ngIf="hasResult">
+      <p [ngStyle]="{color: isSuccess ? 'green' : 'red'}">{{isSuccess ? registerSuccessMessage : registerFailMessage}}</p>
+    </div>
+
+  </div>
+  <div>
+    <button mat-raised-button type="button" class="full-width" color="primary" (click)="onSubmit()">{{ hasResult ? (isSuccess ? 'Close' : 'Register') : 'Register' }}</button>
+  </div>
+</div>

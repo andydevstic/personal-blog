@@ -1,0 +1,40 @@
+<div>
+  <div id="mobileNav" class="flex-column full-width">
+    <ul class="side-menu">
+      <a class="default-text" [routerLink]="['/posts/create']"><li class="flex-column justify-center">Create Posts</li></a>
+      <a class="default-text" [routerLink]="['/about']"><li class="flex-column justify-center">About</li></a>
+      <a class="default-text" [routerLink]="['/contact']"><li class="flex-column justify-center">Contact</li></a>
+      <a class="default-text" [routerLink]="['/login']"><li class="flex-column justify-center">Login</li></a>
+      <a class="default-text" (click)="openRegisterDialog()"><li class="flex-column justify-center">Register</li></a>
+    </ul>
+  </div>
+
+  <div id="main">
+    <div class="page-header">
+      <app-header (openRegister)="openRegisterDialog()" (isOpenNav)="toggleMobileNav($event)"></app-header>
+    </div>
+    <div class="flex-row page-body">
+
+      <div id="main-nav" class="flex-column navigator">
+
+        <div class="flex-row justify-end nav-operator" (click)="toggleMainNav()">
+          <mat-icon style="font-size: 30px; width: 30px; height: 30px">keyboard_arrow_right</mat-icon>
+        </div>
+
+        <div id="nav-content" *ngIf="displayMainNav" class="flex-column nav-content">
+          <app-main-nav></app-main-nav>
+        </div>
+
+      </div>
+
+      <div id="main-content" class="main-content">
+        <router-outlet></router-outlet>
+      </div>
+
+    </div>
+    <div class="page-footer">
+      <app-footer></app-footer>
+    </div>
+  </div>
+
+</div>
